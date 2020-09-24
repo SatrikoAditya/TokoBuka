@@ -1,0 +1,53 @@
+{
+  "name": "ecommerce-customer-client",
+  "version": "1.0.0",
+  "private": true,
+  "description": "## Portfolio ini adalah lanjutan dari E-Commerce CMS .  > Buatlah client-side untuk customer dengan fitur sebagai berikut:  - User bisa melihat product list yang didapatkan dari E-Commerce CMS  - User yang sudah login bisa memiliki shopping cart. <br/>",
+  "author": "",
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^0.20.0",
+    "bootstrap": "^4.5.2",
+    "bootstrap-vue": "^2.17.3",
+    "core-js": "^3.6.5",
+    "vue": "^2.6.11",
+    "vue-moment": "^4.1.0",
+    "vue-router": "^3.2.0",
+    "vue-sweetalert2": "^3.0.8",
+    "vuex": "^3.4.0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-plugin-router": "~4.5.0",
+    "@vue/cli-plugin-vuex": "^4.5.6",
+    "@vue/cli-service": "~4.5.0",
+    "@vue/eslint-config-standard": "^5.1.2",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "eslint-plugin-vue": "^6.2.2",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "_id": "ecommerce-customer-client@1.0.0",
+  "bugs": {
+    "url": "https://github.com/SatrikoAditya/Ecommerce-Customer-Client/issues"
+  },
+  "homepage": "https://github.com/SatrikoAditya/Ecommerce-Customer-Client#readme",
+  "keywords": [],
+  "license": "ISC",
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SatrikoAditya/Ecommerce-Customer-Client.git"
+  }
+}
