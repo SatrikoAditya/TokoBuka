@@ -1,7 +1,7 @@
 <template>
     <div>
         <Navbar />
-        <nav class="navbar nav-heigth navbar-white bg-white justify-content-between">
+        <nav class="navbar nav-heigth navbar-white bg-white justify-content-between sticky-top">
             <h2><b>History</b></h2>
             <button @click="clearHistory" type="button" class="btn btn-outline-danger rounded mt-3 mb-5 mr-3">Clear History</button>
         </nav>
