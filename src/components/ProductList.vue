@@ -21,13 +21,13 @@
 
 <script>
 export default {
-    name: 'ProductList',
-    props: ['product'],
-    methods: {
-        addToCart () {
-            this.$store.dispatch('addToCart', this.product.id)
-        }
+  name: 'ProductList',
+  props: ['product'],
+  methods: {
+    addToCart () {
+      this.$store.dispatch('addToCart', this.product.id)
     }
+  }
 }
 </script>
 

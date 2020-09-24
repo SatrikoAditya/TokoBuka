@@ -18,32 +18,32 @@ import Navbar from '../components/Navbar'
 import HistoryList from '../components/HistoryList'
 
 export default {
-    name: 'History',
-    components: {
-        Navbar,
-        HistoryList
-    },
-    computed: {
-        history () {
-            return this.$store.state.history
-        }
-    },
-    methods: {
-        fetchHistory () {
-            this.$store.dispatch('history')
-        },
-        clearHistory () {
-            this.$store.dispatch('clearHistory')
-        }
-    },
-    created () {
-        this.fetchHistory()
+  name: 'History',
+  components: {
+    Navbar,
+    HistoryList
+  },
+  computed: {
+    history () {
+      return this.$store.state.history
     }
+  },
+  methods: {
+    fetchHistory () {
+      this.$store.dispatch('history')
+    },
+    clearHistory () {
+      this.$store.dispatch('clearHistory')
+    }
+  },
+  created () {
+    this.fetchHistory()
+  }
 }
 </script>
 
 <style>
-.nav-heigth { 
+.nav-heigth {
   height: 80px;
 }
 </style>

@@ -2,8 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
 import router from '../router'
-import VueSweetalert2 from 'vue-sweetalert2';
-
+import VueSweetalert2 from 'vue-sweetalert2'
 
 Vue.use(Vuex)
 Vue.use(VueSweetalert2)
@@ -30,106 +29,52 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    fetchProduct ({commit}) {
+    fetchProduct ({ commit }) {
       axios.get('http://localhost:3000/product/customers')
-      .then(({data}) => {
-        console.log(data)
-        commit('setProduct', data.data)
-      })
-      .catch(console.log)
+        .then(({ data }) => {
+          console.log(data)
+          commit('setProduct', data.data)
+        })
+        .catch(console.log)
     },
-    fetchCart ({commit}) {
+    fetchCart ({ commit }) {
       axios.get('http://localhost:3000/carts', {
         headers: {
           token: localStorage.token
         }
       })
-      .then(({data}) => {
-        console.log(data.totalPrice)
-        commit('setCart', data.product)
-        commit('setTotalPrice', data.totalPrice)
-      })
+        .then(({ data }) => {
+          console.log(data.totalPrice)
+          commit('setCart', data.product)
+          commit('setTotalPrice', data.totalPrice)
+        })
     },
-    history ({commit}) {
+    history ({ commit }) {
       axios.get('http://localhost:3000/carts/history', {
         headers: {
           token: localStorage.token
         }
       })
-      .then(({data}) => {
-        console.log(data.data)
-        commit('setHistory', data.data)
-      })
+        .then(({ data }) => {
+          console.log(data.data)
+          commit('setHistory', data.data)
+        })
     },
     login (context, payload) {
-      const {email, password} = payload
+      const { email, password } = payload
       axios.post('http://localhost:3000/customers/login', {
         email, password
       })
-      .then(({data}) => {
-        this._vm.$swal.fire({
-          icon: 'success',
-          title: 'Login Success!',
-          showConfirmButton: false,
-          timer: 1500
-        })
-        localStorage.setItem('token', data.token)
-        localStorage.setItem('email', data.email)
-        router.push({ name: 'Home' })
-      })
-      .catch(err => {
-        this._vm.$swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: err.response.data.errors[0],
-          showConfirmButton: false,
-          timer: 1500
-        })
-      })
-    },
-    register (context, payload) {
-      const {email, password} = payload
-      axios.post('http://localhost:3000/customers/register', {
-        email, password
-      })
-      .then(({data}) => {
-        this._vm.$swal.fire({
-          icon: 'success',
-          title: 'Register Success!',
-          showConfirmButton: false,
-          timer: 1500
-        })
-        router.push({ name: 'Login' })
-      })
-      .catch(err => {
-        this._vm.$swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: err.response.data.errors[0],
-          showConfirmButton: false,
-          timer: 1500
-        })
-      })
-    },
-    addToCart (context, productId) {
-      if(localStorage.token) {
-        axios.post(`http://localhost:3000/carts/${productId}`, {
-          productId
-        }, {
-          headers: {
-            token: localStorage.token
-          }
-        })
-        .then(({data}) => {
+        .then(({ data }) => {
           this._vm.$swal.fire({
-            toast: true,
-            position: 'top-end',
             icon: 'success',
-            title: 'Add product to cart success!',
+            title: 'Login Success!',
             showConfirmButton: false,
-            timer: 2000
+            timer: 1500
           })
-          context.dispatch('fetchProduct')
+          localStorage.setItem('token', data.token)
+          localStorage.setItem('email', data.email)
+          router.push({ name: 'Home' })
         })
         .catch(err => {
           this._vm.$swal.fire({
@@ -140,6 +85,60 @@ export default new Vuex.Store({
             timer: 1500
           })
         })
+    },
+    register (context, payload) {
+      const { email, password } = payload
+      axios.post('http://localhost:3000/customers/register', {
+        email, password
+      })
+        .then(({ data }) => {
+          this._vm.$swal.fire({
+            icon: 'success',
+            title: 'Register Success!',
+            showConfirmButton: false,
+            timer: 1500
+          })
+          router.push({ name: 'Login' })
+        })
+        .catch(err => {
+          this._vm.$swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: err.response.data.errors[0],
+            showConfirmButton: false,
+            timer: 1500
+          })
+        })
+    },
+    addToCart (context, productId) {
+      if (localStorage.token) {
+        axios.post(`http://localhost:3000/carts/${productId}`, {
+          productId
+        }, {
+          headers: {
+            token: localStorage.token
+          }
+        })
+          .then(({ data }) => {
+            this._vm.$swal.fire({
+              toast: true,
+              position: 'top-end',
+              icon: 'success',
+              title: 'Add product to cart success!',
+              showConfirmButton: false,
+              timer: 2000
+            })
+            context.dispatch('fetchProduct')
+          })
+          .catch(err => {
+            this._vm.$swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: err.response.data.errors[0],
+              showConfirmButton: false,
+              timer: 1500
+            })
+          })
       } else {
         this._vm.$swal.fire({
           icon: 'error',
@@ -148,9 +147,8 @@ export default new Vuex.Store({
           showConfirmButton: false,
           timer: 2500
         })
-        router.push({ name: 'Login'})
+        router.push({ name: 'Login' })
       }
-      
     },
     plusOne (context, productId) {
       axios.patch(`http://localhost:3000/carts/plus/${productId}`, {
@@ -160,48 +158,48 @@ export default new Vuex.Store({
           token: localStorage.token
         }
       })
-      .then(({data}) => {
-        context.dispatch('fetchCart')
-      })
-      .catch(err => {
-        this._vm.$swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: err.response.data.errors[0],
-          showConfirmButton: false,
-          timer: 1500
+        .then(({ data }) => {
+          context.dispatch('fetchCart')
         })
-      })
+        .catch(err => {
+          this._vm.$swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: err.response.data.errors[0],
+            showConfirmButton: false,
+            timer: 1500
+          })
+        })
     },
     checkout (context) {
       axios.patch('http://localhost:3000/carts/checkout', {
-        id:1
+        id: 1
       }, {
         headers: {
           token: localStorage.token
         }
       })
-      .then(({data}) => {
-        this._vm.$swal.fire({
-          toast: true,
-          position: 'top-end',
-          icon: 'success',
-          title: 'Checkout Success!',
-          showConfirmButton: false,
-          timer: 2000
+        .then(({ data }) => {
+          this._vm.$swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'success',
+            title: 'Checkout Success!',
+            showConfirmButton: false,
+            timer: 2000
+          })
+          router.push({ name: 'Home' })
         })
-        router.push({ name: 'Home' })
-      })
-      .catch (err => {
-        console.log(err)
-        this._vm.$swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: err.response.data.errors[0],
-          showConfirmButton: false,
-          timer: 1500
+        .catch(err => {
+          console.log(err)
+          this._vm.$swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: err.response.data.errors[0],
+            showConfirmButton: false,
+            timer: 1500
+          })
         })
-      })
     },
     minOne (context, productId) {
       axios.patch(`http://localhost:3000/carts/min/${productId}`, {
@@ -211,18 +209,18 @@ export default new Vuex.Store({
           token: localStorage.token
         }
       })
-      .then(({data}) => {
-        context.dispatch('fetchCart')
-      })
-      .catch(err => {
-        this._vm.$swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: err.response.data.errors[0],
-          showConfirmButton: false,
-          timer: 1500
+        .then(({ data }) => {
+          context.dispatch('fetchCart')
         })
-      })
+        .catch(err => {
+          this._vm.$swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: err.response.data.errors[0],
+            showConfirmButton: false,
+            timer: 1500
+          })
+        })
     },
     clearHistory (context) {
       axios.delete('http://localhost:3000/carts/history', {
@@ -230,18 +228,18 @@ export default new Vuex.Store({
           token: localStorage.token
         }
       })
-      .then(({data}) => {
-        this._vm.$swal.fire({
-          toast: true,
-          position: 'top-end',
-          icon: 'success',
-          title: 'Clear History Success!',
-          showConfirmButton: false,
-          timer: 2000
+        .then(({ data }) => {
+          this._vm.$swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'success',
+            title: 'Clear History Success!',
+            showConfirmButton: false,
+            timer: 2000
+          })
+          context.dispatch('history')
         })
-        context.dispatch('history')
-      })
-      .catch(console.log)
+        .catch(console.log)
     },
     deleteCart (context, productId) {
       this._vm.$swal({
@@ -253,35 +251,35 @@ export default new Vuex.Store({
         cancelButtonColor: '#d33',
         confirmButtonText: 'Yes, delete it!'
       })
-      .then((result) => {
-        if(result.isConfirmed) {
-          axios.delete(`http://localhost:3000/carts/${productId}`, {
-            headers: {
-              token: localStorage.token
-            }
-          })
-          .then(({data}) => {
-            this._vm.$swal.fire({
-              toast: true,
-              position: 'top-end',
-              icon: 'success',
-              title: 'Delete Product From Cart Success!',
-              showConfirmButton: false,
-              timer: 2000
+        .then((result) => {
+          if (result.isConfirmed) {
+            axios.delete(`http://localhost:3000/carts/${productId}`, {
+              headers: {
+                token: localStorage.token
+              }
             })
-            context.dispatch('fetchCart')
-          })
-          .catch(err => {
-            this._vm.$swal.fire({
-              icon: 'error',
-              title: 'Oops...',
-              text: err.response.data.errors[0],
-              showConfirmButton: false,
-              timer: 1500
-            })
-          })
-        }
-      })
+              .then(({ data }) => {
+                this._vm.$swal.fire({
+                  toast: true,
+                  position: 'top-end',
+                  icon: 'success',
+                  title: 'Delete Product From Cart Success!',
+                  showConfirmButton: false,
+                  timer: 2000
+                })
+                context.dispatch('fetchCart')
+              })
+              .catch(err => {
+                this._vm.$swal.fire({
+                  icon: 'error',
+                  title: 'Oops...',
+                  text: err.response.data.errors[0],
+                  showConfirmButton: false,
+                  timer: 1500
+                })
+              })
+          }
+        })
     },
     logout () {
       this._vm.$swal.fire({
@@ -292,8 +290,8 @@ export default new Vuex.Store({
         showConfirmButton: false,
         timer: 2000
       })
-      localStorage.clear ()
-      router.push({ name: 'Login'})
+      localStorage.clear()
+      router.push({ name: 'Login' })
     }
   },
   modules: {

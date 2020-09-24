@@ -9,21 +9,21 @@
                 <form @submit.prevent="login">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Email address:</label>
-                        <input 
+                        <input
                             v-model="email"
-                            type="email" 
-                            class="form-control" 
-                            id="login-email" 
+                            type="email"
+                            class="form-control"
+                            id="login-email"
                             aria-describedby="emailHelp"
                             placeholder="Input your email here..">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Password:</label>
-                        <input 
+                        <input
                             v-model="password"
-                            type="password" 
-                            class="form-control" 
-                            id="login-password" 
+                            type="password"
+                            class="form-control"
+                            id="login-password"
                             placeholder="Input your password here..">
                     </div>
                     <div class="col text-center mt-4">
@@ -43,25 +43,25 @@
 
 <script>
 export default {
-    name: 'Login',
-    data () {
-        return {
-            email: '',
-            password: ''
-        }
-    },
-    methods: {
-        toRegister () {
-            this.$router.push({ name: 'Register'})
-        },
-        login () {
-            const payload = {
-                email: this.email,
-                password: this.password
-            }
-            this.$store.dispatch('login', payload)
-        }
+  name: 'Login',
+  data () {
+    return {
+      email: '',
+      password: ''
     }
+  },
+  methods: {
+    toRegister () {
+      this.$router.push({ name: 'Register' })
+    },
+    login () {
+      const payload = {
+        email: this.email,
+        password: this.password
+      }
+      this.$store.dispatch('login', payload)
+    }
+  }
 }
 </script>
 

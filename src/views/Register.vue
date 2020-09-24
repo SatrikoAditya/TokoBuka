@@ -27,22 +27,22 @@
 
 <script>
 export default {
-    name: 'Register',
-    data () {
-        return {
-            email: '',
-            password: ''
-        }
-    },
-    methods: {
-        register () {
-            const payload = {
-                email: this.email,
-                password: this.password
-            }
-            this.$store.dispatch('register', payload)
-        }
+  name: 'Register',
+  data () {
+    return {
+      email: '',
+      password: ''
     }
+  },
+  methods: {
+    register () {
+      const payload = {
+        email: this.email,
+        password: this.password
+      }
+      this.$store.dispatch('register', payload)
+    }
+  }
 }
 </script>
 

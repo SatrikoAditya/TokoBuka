@@ -17,7 +17,7 @@
             </div>
         </div>
     </div>
-    
+
 </template>
 
 <script>
@@ -25,30 +25,30 @@ import Navbar from '../components/Navbar'
 import CartList from '../components/CartList'
 
 export default {
-    name: 'Cart',
-    components: {
-        Navbar,
-        CartList
+  name: 'Cart',
+  components: {
+    Navbar,
+    CartList
+  },
+  computed: {
+    carts () {
+      return this.$store.state.carts
     },
-    computed: {
-        carts () {
-            return this.$store.state.carts
-        },
-        totalPrice () {
-            return this.$store.state.totalPrice
-        }
-    },
-    methods: {
-        fetchCart () {
-            this.$store.dispatch('fetchCart')
-        },
-        checkout () {
-            this.$store.dispatch('checkout')
-        }
-    },
-    created () {
-        this.fetchCart()
+    totalPrice () {
+      return this.$store.state.totalPrice
     }
+  },
+  methods: {
+    fetchCart () {
+      this.$store.dispatch('fetchCart')
+    },
+    checkout () {
+      this.$store.dispatch('checkout')
+    }
+  },
+  created () {
+    this.fetchCart()
+  }
 }
 </script>
 

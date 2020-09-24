@@ -54,30 +54,30 @@
 
 <script>
 export default {
-    name: 'Navbar',
-    data () {
-        return {
-            email: localStorage.email
-        }
-    },
-    methods: {
-        toCart () {
-            this.$router.push({ name: 'Cart' })
-            console.log(this.email)
-        },
-        toHome () {
-            this.$router.push({ name: 'Home' })
-        },
-        logout () {
-            this.$store.dispatch('logout')
-        },
-        toHistory () {
-            this.$router.push({ name: 'History' })
-        },
-        toLogin () {
-            this.$router.push({ name: 'Login' })
-        }
+  name: 'Navbar',
+  data () {
+    return {
+      email: localStorage.email
     }
+  },
+  methods: {
+    toCart () {
+      this.$router.push({ name: 'Cart' })
+      console.log(this.email)
+    },
+    toHome () {
+      this.$router.push({ name: 'Home' })
+    },
+    logout () {
+      this.$store.dispatch('logout')
+    },
+    toHistory () {
+      this.$router.push({ name: 'History' })
+    },
+    toLogin () {
+      this.$router.push({ name: 'Login' })
+    }
+  }
 }
 </script>
 

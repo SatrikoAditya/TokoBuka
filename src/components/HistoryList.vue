@@ -11,8 +11,8 @@
 
 <script>
 export default {
-    name: 'HistoryList',
-    props: ['riwayat']
+  name: 'HistoryList',
+  props: ['riwayat']
 }
 </script>
 

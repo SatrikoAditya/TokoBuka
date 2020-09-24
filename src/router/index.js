@@ -53,7 +53,7 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   if (to.name === 'Cart' && !localStorage.token) {
     next({ name: 'Login' })
-  } else if(to.name === 'Cart' && !localStorage.token) {
+  } else if (to.name === 'Cart' && !localStorage.token) {
     next({ name: 'Login' })
   } else {
     next()
