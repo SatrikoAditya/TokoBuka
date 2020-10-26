@@ -30,7 +30,7 @@ export default new Vuex.Store({
   },
   actions: {
     fetchProduct ({ commit }) {
-      axios.get('http://localhost:3000/product/customers')
+      axios.get('https://ecommerce-server-satriko.herokuapp.com/product/customers')
         .then(({ data }) => {
           console.log(data)
           commit('setProduct', data.data)
@@ -38,7 +38,7 @@ export default new Vuex.Store({
         .catch(console.log)
     },
     fetchCart ({ commit }) {
-      axios.get('http://localhost:3000/carts', {
+      axios.get('https://ecommerce-server-satriko.herokuapp.com/carts', {
         headers: {
           token: localStorage.token
         }
@@ -50,7 +50,7 @@ export default new Vuex.Store({
         })
     },
     history ({ commit }) {
-      axios.get('http://localhost:3000/carts/history', {
+      axios.get('https://ecommerce-server-satriko.herokuapp.com/carts/history', {
         headers: {
           token: localStorage.token
         }
@@ -62,7 +62,7 @@ export default new Vuex.Store({
     },
     login (context, payload) {
       const { email, password } = payload
-      axios.post('http://localhost:3000/customers/login', {
+      axios.post('https://ecommerce-server-satriko.herokuapp.com/customers/login', {
         email, password
       })
         .then(({ data }) => {
@@ -88,7 +88,7 @@ export default new Vuex.Store({
     },
     register (context, payload) {
       const { email, password } = payload
-      axios.post('http://localhost:3000/customers/register', {
+      axios.post('https://ecommerce-server-satriko.herokuapp.com/customers/register', {
         email, password
       })
         .then(({ data }) => {
@@ -112,7 +112,7 @@ export default new Vuex.Store({
     },
     addToCart (context, productId) {
       if (localStorage.token) {
-        axios.post(`http://localhost:3000/carts/${productId}`, {
+        axios.post(`https://ecommerce-server-satriko.herokuapp.com/carts/${productId}`, {
           productId
         }, {
           headers: {
@@ -151,7 +151,7 @@ export default new Vuex.Store({
       }
     },
     plusOne (context, productId) {
-      axios.patch(`http://localhost:3000/carts/plus/${productId}`, {
+      axios.patch(`https://ecommerce-server-satriko.herokuapp.com/carts/plus/${productId}`, {
         productId
       }, {
         headers: {
@@ -172,7 +172,7 @@ export default new Vuex.Store({
         })
     },
     checkout (context) {
-      axios.patch('http://localhost:3000/carts/checkout', {
+      axios.patch('https://ecommerce-server-satriko.herokuapp.com/carts/checkout', {
         id: 1
       }, {
         headers: {
@@ -202,7 +202,7 @@ export default new Vuex.Store({
         })
     },
     minOne (context, productId) {
-      axios.patch(`http://localhost:3000/carts/min/${productId}`, {
+      axios.patch(`https://ecommerce-server-satriko.herokuapp.com/carts/min/${productId}`, {
         productId
       }, {
         headers: {
@@ -223,7 +223,7 @@ export default new Vuex.Store({
         })
     },
     clearHistory (context) {
-      axios.delete('http://localhost:3000/carts/history', {
+      axios.delete('https://ecommerce-server-satriko.herokuapp.com/carts/history', {
         headers: {
           token: localStorage.token
         }
@@ -253,7 +253,7 @@ export default new Vuex.Store({
       })
         .then((result) => {
           if (result.isConfirmed) {
-            axios.delete(`http://localhost:3000/carts/${productId}`, {
+            axios.delete(`https://ecommerce-server-satriko.herokuapp.com/carts/${productId}`, {
               headers: {
                 token: localStorage.token
               }

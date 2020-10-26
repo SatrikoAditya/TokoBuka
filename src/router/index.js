@@ -55,6 +55,10 @@ router.beforeEach((to, from, next) => {
     next({ name: 'Login' })
   } else if (to.name === 'Cart' && !localStorage.token) {
     next({ name: 'Login' })
+  } else if(to.name === 'Login' && localStorage.token) {
+    next({ name: 'Home' })
+  } else if(to.name === 'Register' && localStorage.token) {
+    next({ name: 'Home' })
   } else {
     next()
   }
