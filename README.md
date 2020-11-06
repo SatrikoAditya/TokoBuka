@@ -1,8 +1,8 @@
 # ecommerce-customer-client
 
 ### Another Repositories
-CMS repository: https://github.com/SatrikoAditya/Tokobuka-CMS-Admin
-Server Repository: https://github.com/SatrikoAditya/TokoBuka-Server
+- CMS repository: https://github.com/SatrikoAditya/Tokobuka-CMS-Admin
+- Server Repository: https://github.com/SatrikoAditya/TokoBuka-Server
 
 ## Project setup
 ```
